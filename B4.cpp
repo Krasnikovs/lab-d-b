@@ -18,22 +18,17 @@ bool nat_num_validate(int num) {
 	}
 }
 
-void posible_len(int num) {
-	int confirmed_same_num[10] = {};
+int* endivitual_num(int num) {
+	static int confirmed_num[10] = {};
 	int cycle = 0;
 
 	while (true) {
-		for (int i = 0; i <= cycle; i++) {
-			if (cycle > 0 && confirmed_same_num[cycle] == confirmed_same_num[i]) {
-				continue;
-			} else {
-				confirmed_same_num[cycle] = num % 10;
-			}
-		}
+		confirmed_num[cycle] = num % 10;
+		
 		num = num / 10;
 
 		// cout << cycle << endl;
-		cout << confirmed_same_num[cycle] << endl;
+		// cout << num << endl;
 		
 		if (num == 0) {
 			break;
@@ -41,19 +36,23 @@ void posible_len(int num) {
 		cycle +=1;
 	}
 
-	for (int i = 0; i < cycle; i++) {
-		confirmed_same_num[i];
+	static int confirmed_same_num[10] = {};
+
+	for (int i = 0; i <= cycle; i++) {
+		for (int j = 0; j <= cycle; j++) {
+			if (confirmed_num[j] == confirmed_num[i]) {
+				confirmed_same_num[i]++;
+			}
+		}
+
 	}
 
+	return [confirmed_num, confirmed_same_num];
+}
 
-	// cout << sizeof(confirmed_same_num);
-	// while (true) {
-	// if (num % 100 == confirmed_same_num[]) {
-	// 	cout << "whooo" << endl;
-	// }
-	// }
+int* posible_len() {
 	
-	// return 0;
+	return confirmed_num;
 }
 
 int main() {
@@ -72,7 +71,8 @@ int main() {
 
 		// cout << 1;
 
-		posible_len(num);
+		int* confirmed_num, confirmed_same_num;
+		confirmed_num = posible_len(num);
 		
 		// int confirmed_times[x] = {};
 
@@ -85,7 +85,7 @@ int main() {
 		// }
 
 		char user_choise;
-        std::cout << "Vēlaties turpināt? (Y/n):"; 
+        std::cout << "Vēlaties turpināt? (Y/n):";
         cin >> user_choise;
 
 		if (user_choise == 'n') { // tiek izvēlēts n un N, jo tas tiek izmantos kā standartilizētas opcijas, kas nozīmē nē
