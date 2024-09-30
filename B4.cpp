@@ -19,77 +19,48 @@ bool nat_num_validate(int num) {
 }
 
 int** endivitual_num(int num) {
-	int** confirmed_num = new int*;
+	int** confirmed_num = new int*[100];
 	int cycle = 0;
+
+	for (int i = 0; i < 10; i++) {
+		confirmed_num[i] = new int[10];
+		confirmed_num[i][0] = i;
+		confirmed_num[i][1] = 0;
+	}
 
 
 	while (num > 0) {
-		confirmed_num[cycle] = new int[2];
-		// confirmed_num[cycle][0] = num % 10;
+		
+		confirmed_num[num % 10][1]++;
+		num = num / 10;
 
-		for (int i = 0; i <= cycle; i++) {
-			if (confirmed_num[i][0] == num % 10) {
-				confirmed_num[i][1]++;
-				num = num / 10;
-				cycle +=1;
-				break;
-			} else if (i == cycle && confirmed_num[i][0] != num % 10) {
-				confirmed_num[cycle][0] = num % 10;
-				confirmed_num[cycle][1]++;
-				num = num / 10;
-				cycle +=1;
-				break;
-				
-			}
-		}
-		
-		// num = num / 10;
-		
-		// if (num == 0) {
-		// 	break;
-		// }
-		
 	}
-
-	// int** confirmed_same_num = new int*[2];
-
-	// for (int i = 0; i <= cycle; i++) {
-	// 	// confirmed_same_num[i] = new int[cycle];
-	// 	for (int j = 0; j <= cycle; j++) {
-	// 		if (confirmed_num[j] == confirmed_num[i]) {
-	// 			// confirmed_num[i][0] = confirmed_num[i];
-	// 			confirmed_num[i][1]++;
-	// 		}
-	// 	}
-
-	// }
 
 	return confirmed_num;
 
 }
 
-int* most_reacuring_diggit(int** confirmed_num) {
-	int* biggest_diggit_code = new int;
+int most_reacuring_diggit_count(int** confirmed_num) {
+	int* biggest_diggit_count = new int;
 	int biggest_diggit;
-	int cycle = sizeof(confirmed_num)/sizeof(confirmed_num[0][0]);
+	// int cycle = sizeof(confirmed_num)/sizeof(confirmed_num[0][0]);
 
-	for (int i = 0; i < cycle; i++) {
+	for (int i = 0; i < 10; i++) {
 		if (confirmed_num[i][1] > biggest_diggit) {
 			biggest_diggit = confirmed_num[i][1];
-			biggest_diggit_code[0] = i;
 		}
 	}
 
-	int num = 0;
+	// int num = 0;
 
-	for (int i = 0; i < cycle; i++) {
-		if (confirmed_num[i][1] == biggest_diggit && biggest_diggit_code[0] != i) {
-			num++;
-			biggest_diggit_code[num] = i;
-		}
-	}
+	// for (int i = 0; i < cycle; i++) {
+	// 	if (confirmed_num[i][1] == biggest_diggit && biggest_diggit_code[0] != i) {
+	// 		num++;
+	// 		biggest_diggit_code[num] = i;
+	// 	}
+	// }
 
-	return biggest_diggit_code;
+	return biggest_diggit;
 }
 
 int main() {
@@ -111,13 +82,16 @@ int main() {
 		int** confirmed_num;
 		confirmed_num = endivitual_num(num);
 
-		int* reacuring_diggit_code = new int;
-		reacuring_diggit_code = most_reacuring_diggit(confirmed_num);
+		// int* reacuring_diggit_code = new int;
+		int biggest_diggit = most_reacuring_diggit_count(confirmed_num);
 
-		cycle = sizeof(reacuring_diggit_code)/sizeof(reacuring_diggit_code[0]);
+		// cycle = sizeof(reacuring_diggit_code)/sizeof(reacuring_diggit_code[0]);
 
-		for (int i = 0; i < cycle; i++) {
-			cout << "Cipars kas atkārtojās ir " << confirmed_num[reacuring_diggit_code[i]][0] << ", tas atkārtojās " << confirmed_num[reacuring_diggit_code[i]][1] << ".reizes" << endl;
+		for (int i = 0; i < 10; i++) {
+			if (confirmed_num[i][1] == biggest_diggit) {
+				cout << "Cipars kas atkārtojās ir " << confirmed_num[i][0] << ", tas atkārtojās " << confirmed_num[i][1] << ".reizes" << endl;
+			}
+			
 		}
 
 
