@@ -2,22 +2,22 @@
 # B4. Noskaidrot, vai dotajā naturālajā skaitlī ir atrodami vienādi cipari. 
 # Ja ir, izdrukāt tos un skaitu, cik reižu dotais cipars ir sastopams. 
 # Skaitļa dalīšana ciparos jāveic skaitliski.
-# Programma izveidota: 17.09.24
+# Programma izveidota: 30.09.24
 
-def nat_num_validate(num):
-	if num <= 0:
+def nat_num_validate(num): # Funkcija sanem, naturalo skatli ko lietotajs ievadija
+	if num <= 0: #Parbauda, jo ja mazaks par nulle tad nebus naturals
 		print('Skatlis nav naturals')
-		return False
+		return False # Funkcija atgriez, rezultatu par ievadito skaitli, tas ir naturals tad true, ja nav naturals tad false
 	else:
 		return True
 	
-def endivitual_num(num):
-	confirmed_num = []
+def endivitual_num(num): # Funkcija sanem, naturalo skaitli, kas tika parbaudits vai ir naturals
+	confirmed_num = [] #Izmanto masivu, jo ir neierobezots vietu daudzums prieks ievaditajiem skaitliem
 
 	
 
 	for i in range(10):
-		confirmed_num.append([])
+		confirmed_num.append([]) # Izmanto divdimensionalu, lai noteiktu gan skaitli gan cikreizes tas ir paradijies 
 		confirmed_num[i].append(i)
 		confirmed_num[i].append(0)
 		
@@ -32,12 +32,10 @@ def endivitual_num(num):
 			biggest_dig = i[1]
 
 
-	return confirmed_num, biggest_dig
+	return confirmed_num, biggest_dig # Funkcijas atgriez skaitlu virkni, kura ir ierakstits cik reizes katrs skaitlis atkartojas un skaitu kas bija lielakais reizu skaits cik reizes paradijas
 
 			
-		
 
-# def _main_():
 nat_num = False
 while nat_num == False:
 	num = int(input('Ievadiet naturalu skaitli: '))
@@ -55,11 +53,11 @@ for confirmed_num in confirmed_numbers:
 # Ievads		Programma vēlamā		Rezultāts Python
 # 				   reakcija
 
-#  64				 2 32					+
-#    				 4 16
-# 	    			 8	8
-# 		    		16	4
-# 			    	32	2
+#  64				 1 1					+
+#
 
-#  8		    	 2	4					+
-# 				     4	2
+#  8898		    	 3					+
+# 
+#  43034
+#
+#

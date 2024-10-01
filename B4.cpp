@@ -3,12 +3,20 @@ Gustavs Krasnikovs, gk24018
 B4. Noskaidrot, vai dotajā naturālajā skaitlī ir atrodami vienādi cipari. 
 Ja ir, izdrukāt tos un skaitu, cik reižu dotais cipars ir sastopams. 
 Skaitļa dalīšana ciparos jāveic skaitliski.
+Programma izveidota: 30.09.24
 */
 
 #include<iostream>
 using namespace std;
 
-bool nat_num_validate(int num) {
+/*
+bool nat_num_validate(int num);
+Funkcija nat_num_validate(num) -
+nosaka vai lietotaja ievadita skaitlis ir naturals skaitlis.
+Atgriez ka rezultatu true vai false
+*/
+
+bool nat_num_validate(int num) { 
 	if (num <= 0) {
 		cout << "Skaitlis nav naturals" << endl;
 
@@ -18,12 +26,19 @@ bool nat_num_validate(int num) {
 	}
 }
 
-int** endivitual_num(int num) {
-	int** confirmed_num = new int*[100];
+/*
+int** endivitual_num(int num)
+Funkcija endivitual_num(num) - 
+nosaka visus ciparus ievaditaja skaitli num un cik reizu katrs atkartojas.
+Atgriez virkni ar cipariem un cik katrs cipars ir paradijies.
+*/
+
+int** endivitual_num(int num) { 
+	int** confirmed_num = new int*[10]; // Izmanto divdimensionalu, lai noteiktu gan skaitli gan cikreizes tas ir paradijies 
 	int cycle = 0;
 
 	for (int i = 0; i < 10; i++) {
-		confirmed_num[i] = new int[10];
+		confirmed_num[i] = new int[2];
 		confirmed_num[i][0] = i;
 		confirmed_num[i][1] = 0;
 	}
@@ -40,10 +55,15 @@ int** endivitual_num(int num) {
 
 }
 
-int most_reacuring_diggit_count(int** confirmed_num) {
+/*
+int most_reacuring_diggit_count(int** confirmed_num) 
+Funkcija most_reacuring_diggit_count(confirmed_num) -
+nosaka
+*/
+
+int most_reacuring_diggit_count(int** confirmed_num) { // Funkcija sanem, skaitlu virkni, kas tika atgriezta no citas funkcijas 
 	int* biggest_diggit_count = new int;
 	int biggest_diggit;
-	// int cycle = sizeof(confirmed_num)/sizeof(confirmed_num[0][0]);
 
 	for (int i = 0; i < 10; i++) {
 		if (confirmed_num[i][1] > biggest_diggit) {
@@ -51,16 +71,7 @@ int most_reacuring_diggit_count(int** confirmed_num) {
 		}
 	}
 
-	// int num = 0;
-
-	// for (int i = 0; i < cycle; i++) {
-	// 	if (confirmed_num[i][1] == biggest_diggit && biggest_diggit_code[0] != i) {
-	// 		num++;
-	// 		biggest_diggit_code[num] = i;
-	// 	}
-	// }
-
-	return biggest_diggit;
+	return biggest_diggit; // Funkcija atgriez, skaitu kas bija lielakais reizu skaits cik reizes paradijas
 }
 
 int main() {
@@ -77,15 +88,11 @@ int main() {
 			nat_num = nat_num_validate(num);
 		}
 
-		// cout << 1;
-
 		int** confirmed_num;
 		confirmed_num = endivitual_num(num);
 
-		// int* reacuring_diggit_code = new int;
 		int biggest_diggit = most_reacuring_diggit_count(confirmed_num);
 
-		// cycle = sizeof(reacuring_diggit_code)/sizeof(reacuring_diggit_code[0]);
 
 		for (int i = 0; i < 10; i++) {
 			if (confirmed_num[i][1] == biggest_diggit) {
@@ -115,7 +122,9 @@ Testa plāns
 Ievads		Programma vēlamā		Rezultāts C++
 				reakcija
 
- 64					0					+
+ 64					1 1					+
 				 
- 818				2					+
+ 8188				3					+
+
+ 43034				2 2					+
 */
