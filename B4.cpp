@@ -63,7 +63,7 @@ nosaka
 
 int most_reacuring_diggit_count(int** confirmed_num) { // Funkcija sanem, skaitlu virkni, kas tika atgriezta no citas funkcijas 
 	int* biggest_diggit_count = new int;
-	int biggest_diggit;
+	int biggest_diggit = 0;
 
 	for (int i = 0; i < 10; i++) {
 		if (confirmed_num[i][1] > biggest_diggit) {
@@ -110,7 +110,9 @@ int main() {
             continue_prog = false;
         } else if (user_choise == 'N') {
             continue_prog = false;
-        } 
+        }
+
+		delete[] confirmed_num;
 
 	} while (continue_prog == true);
     
